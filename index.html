@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>高伟东 · 词根词缀（记忆）字典 · 十五年，只做一件事</title>
+<meta name="description" content="高伟东，《词根词缀（记忆）字典》研发者。2007 年重新捡起英语，2012 年 APP 1.0 上线，至今整理英语词根 3415 个、三门外语词根合计 5906 个，为 20 万多条单词建立词根索引。">
+<meta name="author" content="高伟东">
+<meta property="og:type" content="website">
+<meta property="og:title" content="高伟东 · 词根词缀（记忆）字典">
+<meta property="og:description" content="十五年，只做一件和词根有关的事。">
+<link rel="icon" href="assets/icon-128.png">
+<link rel="apple-touch-icon" href="assets/icon-128.png">
+<script>document.documentElement.className += " js";</script>
+<style>
+  :root{
+    --paper:#F7F3EB;
+    --paper-2:#FBF8F2;
+    --ink:#1B211D;
+    --ink-2:#474F48;
+    --ink-3:#8A9089;
+    --green:#1F6F5C;
+    --green-deep:#164F42;
+    --green-wash:#E6EEE9;
+    --line:rgba(27,33,29,.12);
+    --serif:"Songti SC","Noto Serif SC","Source Han Serif SC","Source Han Serif CN","SimSun",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+    --max:730px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -8%, #FFFFFF 0%, rgba(255,255,255,0) 60%),
+      radial-gradient(900px 500px at 100% 4%, #EFF3EE 0%, rgba(239,243,238,0) 55%),
+      var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.9;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection{background:#CFE2D9;color:var(--green-deep)}
+  a{color:var(--green);text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:3px}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+  /* ---------- 顶栏 ---------- */
+  .topbar{
+    position:sticky;top:0;z-index:20;
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    background:rgba(247,243,235,.82);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease,background .3s ease;
+  }
+  .topbar.stuck{border-bottom-color:var(--line);background:rgba(247,243,235,.94)}
+  .topbar .wrap{display:flex;align-items:center;gap:10px;height:60px}
+  .brand{display:flex;align-items:center;gap:10px;font-size:14.5px;letter-spacing:.02em;color:var(--ink-2)}
+  .brand img{width:24px;height:24px;border-radius:6px;display:block}
+  .brand b{font-weight:600;color:var(--ink)}
+  .topbar nav{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:14px}
+  .topbar nav a{color:var(--ink-3)}
+  .topbar nav a:hover{color:var(--green);text-decoration:none}
+  .topbar nav a.cta{
+    color:var(--green-deep);border:1px solid rgba(31,111,92,.28);
+    padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.6);
+    transition:background .2s ease,border-color .2s ease;
+  }
+  .topbar nav a.cta:hover{background:var(--green-wash);border-color:rgba(31,111,92,.45)}
+  @media (max-width:640px){
+    .topbar nav a:not(.cta){display:none}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{padding:84px 0 10px;position:relative}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:13px;letter-spacing:.14em;color:var(--green);
+    text-transform:uppercase;
+    padding:5px 12px 5px 10px;border-radius:999px;
+    background:rgba(31,111,92,.07);border:1px solid rgba(31,111,92,.16);
+  }
+  .eyebrow .dot{width:5px;height:5px;border-radius:50%;background:var(--green);opacity:.75}
+  h1{
+    font-family:var(--serif);
+    font-size:clamp(40px,7vw,64px);
+    line-height:1.22;
+    letter-spacing:.01em;
+    margin:26px 0 0;
+    font-weight:600;
+  }
+  h1 .thin{color:var(--ink-3);font-weight:400}
+  .tagline{
+    font-family:var(--serif);
+    font-size:clamp(21px,3.2vw,28px);
+    line-height:1.6;color:var(--green-deep);
+    margin:16px 0 0;letter-spacing:.01em;
+  }
+  .lede{
+    font-size:16.5px;line-height:1.95;
+    color:var(--ink-2);
+    margin:20px 0 0;
+    max-width:30em;
+  }
+  .hero-meta{
+    display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;
+    margin:30px 0 0;font-size:14px;color:var(--ink-3);
+  }
+  .hero-meta span{display:inline-flex;align-items:center;gap:7px}
+  .hero-meta i{width:4px;height:4px;border-radius:50%;background:var(--ink-3);opacity:.6;display:inline-block}
+  .hero-en{
+    margin:26px 0 0;font-size:12.5px;letter-spacing:.06em;color:var(--ink-3);
+    text-transform:uppercase;
+  }
+  .hero-en em{font-style:normal;color:var(--ink-2)}
+  .hero-rule{
+    margin:46px 0 0;height:1px;
+    background:linear-gradient(90deg,var(--line),rgba(27,33,29,0));
+  }
+
+  /* ---------- 通用段落 ---------- */
+  section{padding:60px 0}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin:0 0 30px}
+  .sec-num{
+    font-family:var(--serif);font-size:13px;letter-spacing:.18em;
+    color:var(--green);opacity:.8;white-space:nowrap;
+  }
+  h2{
+    font-family:var(--serif);font-size:clamp(23px,3.4vw,29px);
+    line-height:1.4;margin:0;font-weight:600;letter-spacing:.01em;
+  }
+  p{margin:0 0 1.15em}
+  .prose p{color:var(--ink-2)}
+  .prose p strong{color:var(--ink);font-weight:600}
+  .prose .dim{color:var(--ink-3)}
+  .endash{color:var(--ink-3);letter-spacing:.3em;text-align:center;margin:34px 0 0;font-size:13px}
+
+  /* ---------- 时间线 ---------- */
+  .timeline{
+    list-style:none;margin:40px 0 0;padding:0;
+    display:grid;grid-template-columns:repeat(3,1fr);position:relative;
+  }
+  .timeline::before{
+    content:"";position:absolute;left:0;right:6px;top:6px;height:1px;
+    background:linear-gradient(90deg,rgba(31,111,92,.5),rgba(31,111,92,.18));
+  }
+  .timeline li{position:relative;padding:24px 20px 0 0}
+  .timeline li::before{
+    content:"";position:absolute;left:0;top:1px;width:9px;height:9px;border-radius:50%;
+    background:var(--paper);border:2px solid var(--green);box-sizing:border-box;
+  }
+  .timeline .tl-year{
+    display:block;font-family:var(--serif);font-size:19px;font-weight:600;
+    color:var(--green-deep);letter-spacing:.02em;line-height:1.3;
+  }
+  .timeline .tl-text{display:block;margin-top:4px;font-size:14px;color:var(--ink-3);line-height:1.65}
+  @media (max-width:640px){
+    .timeline{grid-template-columns:1fr;margin-top:30px}
+    .timeline::before{left:4px;right:auto;top:4px;bottom:14px;width:1px;height:auto;background:linear-gradient(180deg,rgba(31,111,92,.5),rgba(31,111,92,.18))}
+    .timeline li{padding:0 0 20px 24px}
+    .timeline li::before{top:6px}
+    .timeline li:last-child{padding-bottom:0}
+  }
+
+  /* ---------- 数字 ---------- */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);
+    border-radius:14px;overflow:hidden;
+  }
+  .stat{background:var(--paper-2);padding:22px 16px 20px}
+  .stat .n{
+    font-family:var(--serif);font-variant-numeric:tabular-nums;
+    font-size:clamp(26px,3.6vw,34px);line-height:1.15;font-weight:600;color:var(--green-deep);
+    display:block;
+  }
+  .stat .n small{font-size:.46em;font-weight:500;color:inherit;opacity:.62;margin-left:3px;vertical-align:.16em;letter-spacing:0}
+  .stat .k{display:block;margin-top:8px;font-size:13px;color:var(--ink-3);letter-spacing:.02em}
+  .stats-note{margin:16px 0 0;font-size:13.5px;color:var(--ink-3)}
+  @media (max-width:640px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+  }
+
+  /* ---------- 开源理由 ---------- */
+  .reasons{display:grid;gap:18px}
+  .reason{
+    position:relative;padding:22px 24px 22px 26px;
+    background:rgba(255,255,255,.55);
+    border:1px solid var(--line);border-radius:14px;
+  }
+  .reason::before{
+    content:"";position:absolute;left:0;top:18px;bottom:18px;width:3px;
+    background:var(--green);border-radius:0 3px 3px 0;opacity:.55;
+  }
+  .reason h3{
+    font-family:var(--serif);font-size:18px;margin:0 0 8px;font-weight:600;letter-spacing:.01em;
+  }
+  .reason p{margin:0;color:var(--ink-2);font-size:16px}
+
+  /* ---------- 引言 ---------- */
+  .quote{
+    margin:12px 0;padding:46px 32px;
+    border-radius:18px;
+    background:
+      radial-gradient(700px 300px at 0% 0%, #FFFFFF 0%, rgba(255,255,255,0) 70%),
+      var(--green-wash);
+    border:1px solid rgba(31,111,92,.14);
+    text-align:center;
+  }
+  .quote p{
+    font-family:var(--serif);
+    font-size:clamp(22px,3.4vw,30px);
+    line-height:1.6;margin:0;color:var(--green-deep);letter-spacing:.02em;
+  }
+  .quote span{
+    display:block;margin-top:14px;font-size:14px;color:var(--ink-3);letter-spacing:.06em;
+  }
+
+  /* ---------- 关注 ---------- */
+  .follow{
+    display:grid;grid-template-columns:200px 1fr;gap:36px;align-items:center;
+    padding:34px;border:1px solid var(--line);border-radius:18px;
+    background:rgba(255,255,255,.6);
+  }
+  .qr{
+    background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:10px;box-shadow:0 8px 24px -18px rgba(27,33,29,.5);
+    transition:transform .35s cubic-bezier(.2,.8,.3,1),box-shadow .35s ease;
+  }
+  .qr:hover{transform:translateY(-2px) scale(1.015);box-shadow:0 14px 30px -18px rgba(27,33,29,.55)}
+  .qr img{width:100%;height:auto;display:block;border-radius:6px}
+  .follow h3{
+    font-family:var(--serif);font-size:22px;margin:0 0 10px;font-weight:600;
+  }
+  .follow p{margin:0 0 12px;color:var(--ink-2);font-size:15.5px}
+  .follow .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .btn{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:14.5px;padding:9px 16px;border-radius:10px;
+    border:1px solid rgba(31,111,92,.24);color:var(--green-deep);
+    background:rgba(255,255,255,.7);
+    transition:background .2s ease,border-color .2s ease,color .2s ease;
+  }
+  .btn:hover{background:var(--green);border-color:var(--green);color:#fff;text-decoration:none}
+  .btn svg{width:15px;height:15px;flex:none}
+  @media (max-width:640px){
+    .follow{grid-template-columns:1fr;gap:22px;padding:24px;text-align:center}
+    .qr{width:180px;margin:0 auto}
+    .follow .links{justify-content:center}
+  }
+
+  /* ---------- 页脚 ---------- */
+  footer{
+    padding:44px 0 60px;border-top:1px solid var(--line);
+    color:var(--ink-3);font-size:13.5px;
+  }
+  footer .wrap{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+  footer .sig{margin-left:auto;font-family:var(--serif);color:var(--ink-2);letter-spacing:.04em}
+  @media (max-width:640px){footer .sig{margin-left:0}}
+
+  /* ---------- 入场动画 ---------- */
+  html.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.3,1)}
+  html.js .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html.js .reveal{opacity:1;transform:none;transition:none}
+    .qr{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <div class="wrap">
+    <span class="brand">
+      <img src="assets/icon-128.png" alt="词根词缀（记忆）字典 图标">
+      <b>高伟东</b><span id="brand-sub">· 词根词缀（记忆）字典</span>
+    </span>
+    <nav>
+      <a href="#numbers">数字</a>
+      <a href="#opensource">为什么开源</a>
+      <a class="cta" href="#follow">关注公众号</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <span class="eyebrow"><i class="dot"></i>词根词缀（记忆）字典 · 作者</span>
+    <h1>我是高伟东</h1>
+    <p class="tagline">十五年，只做一件和词根有关的事。</p>
+    <p class="lede">2007 年把扔下多年的英语重新捡起来，2012 年 APP 1.0 上线。没想到，一直坚持到了今天。</p>
+    <div class="hero-meta">
+      <span>东北人</span><i></i>
+      <span>2007 年重新开始学英语</span><i></i>
+      <span>2012 年 APP 1.0</span><i></i>
+      <span>阅读软件 · 词源数据</span>
+    </div>
+    <p class="hero-en">Gao Weidong · Author of <em>Roots &amp; Affixes Dictionary</em></p>
+    <div class="hero-rule"></div>
+  </div>
+
+  <section id="story">
+    <div class="wrap prose reveal">
+      <div class="sec-head"><span class="sec-num">01</span><h2>一个人，十五年</h2></div>
+      <p>2007 年，我把扔下多年的英语重新捡了起来。学习的过程中，我发现现有的英语类 APP 都不能完全满足自己的需求，于是开始总结自己的学习经验，不断整理单词词根、词源。<strong>2012 年，APP 1.0 正式上线。</strong></p>
+      <p>没想到，我竟然一直坚持到了今天。</p>
+      <p class="dim">这些事，全部是用业余时间做的。</p>
+      <ol class="timeline">
+        <li><span class="tl-year">2007</span><span class="tl-text">把扔下多年的英语重新捡起来</span></li>
+        <li><span class="tl-year">2012</span><span class="tl-text">APP 1.0 正式上线</span></li>
+        <li><span class="tl-year">2026</span><span class="tl-text">决定边整理，边开放</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="numbers">
+    <div class="wrap reveal">
+      <div class="sec-head"><span class="sec-num">02</span><h2>现在的进度</h2></div>
+      <div class="stats">
+        <div class="stat"><span class="n" data-count="3415">3415</span><span class="k">英语词根</span></div>
+        <div class="stat"><span class="n" data-count="2410">2410</span><span class="k">法语词根</span></div>
+        <div class="stat"><span class="n" data-count="1802">1802</span><span class="k">西语词根</span></div>
+        <div class="stat"><span class="n" data-count="1694">1694</span><span class="k">德语词根</span></div>
+        <div class="stat"><span class="n" data-count="20" data-suffix=" 万+">20<small>万+</small></span><span class="k">单词建立词根索引</span></div>
+        <div class="stat"><span class="n" data-count="50" data-suffix=" 万+">50<small>万+</small></span><span class="k">条单词记忆方法</span></div>
+        <div class="stat"><span class="n" data-count="200" data-suffix="+">200<small>+</small></span><span class="k">安卓 / 苹果版本迭代</span></div>
+        <div class="stat"><span class="n" data-count="15" data-suffix=" 年">15<small>年</small></span><span class="k">词源整理</span></div>
+      </div>
+      <p class="stats-note">除了词根与词源，还有新版本的诸多新功能，以及阅读软件的编写。</p>
+    </div>
+  </section>
+
+  <section id="opensource">
+    <div class="wrap reveal">
+      <div class="sec-head"><span class="sec-num">03</span><h2>为什么想开源</h2></div>
+      <p style="color:var(--ink-3);font-size:14px;letter-spacing:.04em;margin-bottom:24px">2026 年 11 月 24 日</p>
+      <div class="reasons">
+        <div class="reason">
+          <h3>不想让这些数据，随我个人的状态一起封存</h3>
+          <p>做词源整理，一晃已经走过十五个年头。说不累是假话，长年累月地搜集、校对、考据，身心早已疲惫。人总会慢慢变老，谁也无法预知未来——倘若真有什么意外，耗费十几年心血沉淀下来的词源数据，难道就要烂在自己手里，从此无人问津？</p>
+        </div>
+        <div class="reason">
+          <h3>开源，也是对自己的倒逼</h3>
+          <p>一份只留在本地自用的数据，可以容忍杂乱、残缺，很多疏漏可以视而不见；但一旦交付给所有学习者和开发者使用，就必须板板正正、条理清晰，不能把乱糟糟的半成品抛给大家。</p>
+        </div>
+        <div class="reason">
+          <h3>现实的难题：至少还要一年</h3>
+          <p>手上原始的数据杂乱零散，存在大量格式不统一、标注缺失、重复错漏的问题。要达到可以公开交付的标准，要做清洗、归类、校验、格式化——工作量保守估算，至少需要一年以上。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="promise">
+    <div class="wrap reveal">
+      <div class="quote">
+        <p>我会边整理，边开放。</p>
+        <span>请相信，我必将继续坚持下去</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="words">
+    <div class="wrap prose reveal">
+      <div class="sec-head"><span class="sec-num">04</span><h2>再说两句</h2></div>
+      <p>说实话，很累。再说句矫情的话，累的值。</p>
+      <p>这既是对自己承诺的兑现，也是为了所有支持我的伙伴们。</p>
+      <p><strong>将来，你一定会感谢，今天这么拼命的自己。</strong></p>
+      <p>不忘初心，方得始终。</p>
+      <p class="dim">希望不会烂尾，哈哈。</p>
+      <div class="endash">· · ·</div>
+    </div>
+  </section>
+
+  <section id="follow">
+    <div class="wrap reveal">
+      <div class="follow">
+        <div class="qr">
+          <img src="assets/qrcode.jpg" alt="微信公众号【高山词根】二维码，扫码关注可查看实时更新进度">
+        </div>
+        <div>
+          <h3>关注公众号【高山词根】</h3>
+          <p>更新信息、进度和阶段成果，我会在这里实时发布。扫码即可关注。</p>
+          <p style="color:var(--ink-3);font-size:14px">内容展示网站：www.dicts.cn</p>
+          <div class="links">
+            <a class="btn" href="https://www.dicts.cn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg>
+              访问 dicts.cn
+            </a>
+            <a class="btn" href="#top">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+              回到顶部
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> 高伟东 · 词根词缀（记忆）字典</span>
+    <span class="sig">不忘初心，方得始终。</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // 年份
+  var y = document.getElementById("year");
+  if (y) y.textContent = String(new Date().getFullYear());
+
+  // 顶栏细线：滚过首屏才出现
+  var bar = document.getElementById("topbar");
+  var onScroll = function () {
+    if (!bar) return;
+    bar.classList.toggle("stuck", window.scrollY > 8);
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // 入场
+  var items = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  if (reduce || !("IntersectionObserver" in window)) {
+    items.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
+    items.forEach(function (el) { io.observe(el); });
+  }
+
+  // 数字滚动：只有在「现在的进度」进入视口后才跑，跑一次
+  var nums = Array.prototype.slice.call(document.querySelectorAll(".stat .n[data-count]"));
+  function format(n) {
+    return n >= 10000 ? n.toLocaleString("en-US") : String(n);
+  }
+  function run(el) {
+    var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+    var suffix = el.getAttribute("data-suffix") || "";
+    if (reduce) { el.innerHTML = format(target) + (suffix ? "<small>" + suffix.trim() + "</small>" : ""); return; }
+    var dur = 1100, t0 = 0;
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var v = Math.round(target * eased);
+      el.innerHTML = format(v) + (suffix ? "<small>" + suffix.trim() + "</small>" : "");
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  var grid = document.querySelector(".stats");
+  if (grid) {
+    var fired = false;
+    var kick = function () {
+      if (fired) return;
+      fired = true;
+      nums.forEach(function (el, i) {
+        setTimeout(function () { run(el); }, i * 60);
+      });
+    };
+    if (!("IntersectionObserver" in window)) {
+      kick();
+    } else {
+      var io2 = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { kick(); io2.disconnect(); }
+        });
+      }, { threshold: 0.25 });
+      io2.observe(grid);
+    }
+  }
+
+  // 锚点：平滑滚动（Safari 老版本靠 CSS 就够，这里兜一层）
+  if (!("scrollBehavior" in document.documentElement.style)) {
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener("click", function (ev) {
+        var id = a.getAttribute("href").slice(1);
+        var el = id && document.getElementById(id);
+        if (!el) return;
+        ev.preventDefault();
+        window.scrollTo(0, el.getBoundingClientRect().top + window.pageYOffset - 56);
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
