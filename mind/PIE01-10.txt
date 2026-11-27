@@ -1,0 +1,11 @@
+第一组思维导图说明（原始印欧语*agro- “田地”），对应思维导图PIE.posm
+acre, (n.) “英亩，面积单位；田地”，源自古英语 æcer “田地、英亩”，经由日耳曼语 *akraz “田地”，源自原始印欧语*agro- “田地”。
+agrarian, (adj.) “农业的；土地的”，源自拉丁语 ager（属格 agrī，早期形式 *agros “区域、财产、田地”），源自原始印欧语*agro- “田地”。
+agriculture, (n.) “农业；农学”，源自拉丁语 ager（属格 agrī，早期形式 *agros “区域、财产、田地”），源自原始印欧语*agro- “田地”。
+peregrine, (adj.) “漂泊的；外来的”，源自拉丁语 ager（属格 agrī，早期形式 *agros “区域、财产、田地”），源自原始印欧语*agro- “田地”。
+pilgrim, (n.) “朝圣者；旅行者”，源自拉丁语 ager（属格 agrī，早期形式 *agros “区域、财产、田地”），源自原始印欧语*agro- “田地”。
+agria, (n.) “野李（一种野生果树）”，源自希腊语 agros “田地”及 agrios “野生的”，源自原始印欧语*agro- “田地”。
+agro-,（前缀， “农业；田地”），源自希腊语 agros “田地”及 agrios “野生的”，源自原始印欧语*agro- “田地”。
+agrostology, (n.) “草本植物学”，源自希腊语 agros “田地”及 agrios “野生的”，源自原始印欧语*agro- “田地”。
+onager, (n.) “中亚野驴；投石机”，源自希腊语 agros “田地”及 agrios “野生的”，源自原始印欧语*agro- “田地”。
+stavesacre, (n.) “乌头（一种有毒草本植物）”，源自希腊语 agros “田地”及 agrios “野生的”，源自原始印欧语*agro- “田地”。
